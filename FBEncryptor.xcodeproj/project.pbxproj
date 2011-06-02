@@ -63,6 +63,7 @@
 		4C1000DF1393250900C9257E /* FBEncryptorAES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBEncryptorAES.m; sourceTree = "<group>"; };
 		4C10010C13932FC400C9257E /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		4C10010D13932FC400C9257E /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		4C7E35C313974826000D7909 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +93,7 @@
 		4C100095139324DA00C9257E = {
 			isa = PBXGroup;
 			children = (
+				4C7E35C313974826000D7909 /* README.md */,
 				4C1000DD139324F300C9257E /* FBEncryptor */,
 				4C1000AA139324DB00C9257E /* Test Application */,
 				4C1000CA139324DB00C9257E /* FBEncryptTests */,
