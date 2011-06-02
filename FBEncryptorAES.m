@@ -124,17 +124,17 @@
 }
 
 
-+ (NSString*)encryptBase64Message:(NSString*)plainMessage keyString:(NSString*)keyString separateLines:(BOOL)separateLines
++ (NSString*)encryptBase64String:(NSString*)string keyString:(NSString*)keyString separateLines:(BOOL)separateLines
 {
-    NSData* data = [self encryptData:[plainMessage dataUsingEncoding:NSUTF8StringEncoding]
+    NSData* data = [self encryptData:[string dataUsingEncoding:NSUTF8StringEncoding]
                                  key:[keyString dataUsingEncoding:NSUTF8StringEncoding]
                                   iv:nil];
     return [data base64EncodedStringWithSeparateLines:separateLines];
 }
 
-+ (NSString*)decryptBase64Message:(NSString*)encryptedBase64Message keyString:(NSString*)keyString
++ (NSString*)decryptBase64String:(NSString*)encryptedBase64String keyString:(NSString*)keyString
 {
-    NSData* encryptedData = [NSData dataFromBase64String:encryptedBase64Message];
+    NSData* encryptedData = [NSData dataFromBase64String:encryptedBase64String];
     NSData* data = [self decryptData:encryptedData
                                  key:[keyString dataUsingEncoding:NSUTF8StringEncoding]
                                   iv:nil];

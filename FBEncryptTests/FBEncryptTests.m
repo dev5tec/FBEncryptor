@@ -28,13 +28,13 @@
 
 - (void)testEncrypt
 {
-    STAssertEqualObjects([FBEncryptorAES encryptBase64Message:@"Write text here and touch encrypt button and confirm the encrypted message."
+    STAssertEqualObjects([FBEncryptorAES encryptBase64String:@"Write text here and touch encrypt button and confirm the encrypted message."
                                                     keyString:@"sampleprivatekey"
                                                 separateLines:NO],
                          @"kWxGYHe3mYeeWTdpnM7V4/TZ1Dmg+PLUkkOdCc8AQxAz+6oDf7kCBMWMwOUFMe7m7LxzSi9T43Pb1XaG7409vb0QaDO8eZMHmJgXx/oGbEA=",
                          nil);
 
-    STAssertEqualObjects([FBEncryptorAES encryptBase64Message:@"Write text here and touch encrypt button and confirm the encrypted message."
+    STAssertEqualObjects([FBEncryptorAES encryptBase64String:@"Write text here and touch encrypt button and confirm the encrypted message."
                                                     keyString:@"sampleprivatekey"
                                                 separateLines:YES],
                          //123456789+123456789+123456789+123456789+123456789+123456789+1234|<=64
@@ -45,7 +45,7 @@
 
 - (void)testDecrypt
 {
-    STAssertEqualObjects([FBEncryptorAES decryptBase64Message:@"kWxGYHe3mYeeWTdpnM7V4/TZ1Dmg+PLUkkOdCc8AQxAz+6oDf7kCBMWMwOUFMe7m7LxzSi9T43Pb1XaG7409vb0QaDO8eZMHmJgXx/oGbEA="
+    STAssertEqualObjects([FBEncryptorAES decryptBase64String:@"kWxGYHe3mYeeWTdpnM7V4/TZ1Dmg+PLUkkOdCc8AQxAz+6oDf7kCBMWMwOUFMe7m7LxzSi9T43Pb1XaG7409vb0QaDO8eZMHmJgXx/oGbEA="
                                                     keyString:@"sampleprivatekey"],
                          @"Write text here and touch encrypt button and confirm the encrypted message.",
                          nil);

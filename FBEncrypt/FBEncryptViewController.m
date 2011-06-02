@@ -69,15 +69,15 @@
 
 - (IBAction)encrypt:(id)sender
 {
-    [FBEncryptorAES setBase64SeparateLines:[self.separateline isOn]];
-    self.encrypted.text = [FBEncryptorAES encryptBase64Message:self.message.text
-                                                     keyString:self.key.text];
+    self.encrypted.text = [FBEncryptorAES encryptBase64String:self.message.text
+                                                     keyString:self.key.text
+                                                 separateLines:[self.separateline isOn]];
     NSLog(@"encrypted: %@", self.encrypted.text);
 }
 
 - (IBAction)decrypt:(id)sender
 {
-    NSString* msg = [FBEncryptorAES decryptBase64Message:self.encrypted.text
+    NSString* msg = [FBEncryptorAES decryptBase64String:self.encrypted.text
                                                keyString:self.key.text];
     
     if (msg) {
