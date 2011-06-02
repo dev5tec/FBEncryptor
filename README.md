@@ -7,27 +7,32 @@ FBEncryptor is enabled to encrypt/decrypt a message. Supported encryption algori
 Usage
 -----
 
-(1) Encrypt/decrypt a plain text message with Base64 encoding
+(1) Encrypt/decrypt plain text message with Base64 encoding
+
+Encrypt)
 
 	NSString* encrypted = [FBEncryptorAES encryptBase64String:@"Hello"
 											        keyString:@"somekey"
 												separateLines:NO];
 
 The output string is encoded with Base64.
+
 	example)
 	message: @"Hello"
 	output : @"gT2IUF9Jzmn7wglXk3XC3w=="
 
-if 'separateLines' is NO, no CR/LF characters will be added.
+if 'separateLines:' is NO, no CR/LF characters will be added.
 Otherwise a CR/LF pair will be added every 64 encoded chars.
 
+
+Decrypt)
 
 	NSString* decrypted = [FBEncryptorAES decryptBase64String:encrypted
 											        keyString:key];
 
 
 
-(2) Encrypt/decrypt a binary
+(2) Encrypt/decrypt binary data
 
 	NSData* encryptedData = [FBEncryptorAES encryptData:data
 											    keyData:key
@@ -37,14 +42,14 @@ Otherwise a CR/LF pair will be added every 64 encoded chars.
 											    keyData:key
 												     iv:iv];
 
-The 'iv' is initailization vector for CBC mode. it is abled to be set nil.
+The iv is called 'initailization vector' for CBC mode. it is abled to be set nil.
 
 
 (3) Generate iv
 
 	NSData* iv = [FBEncryptorAES generateIv];
 
-It generates a 16 bytes random binary value. You can use this iv value for +encryptData:keyData:iv:.
+It generates a 16 bytes random binary value. You can use this value for +encryptData:keyData:iv:.
 
 
 (4) Utiities
@@ -68,10 +73,12 @@ Customize
 ---------
 
 It is able to change below constants:
+
 	FBEncryptor.h
 	#define FBENCRYPT_KEY_SIZE      kCCKeySizeAES256
 
 If you want to use AES 128 bit key, you can set the constant like below:
+
 	#define FBENCRYPT_KEY_SIZE      kCCKeySizeAES128
 
 NOTE: If you change the constant, the testcase will be failed (it is made for AES 256 bit key).
@@ -91,6 +98,7 @@ You should copy below files to your projects.
 Etc
 -------
 Special thanks for Matt Gallagher (author of NSData+Base64 code).
+
 "Cocoa with Love: Base64 encoding options on the Mac and iPhone"
 http://cocoawithlove.com/2009/06/base64-encoding-options-on-mac-and.html
 
@@ -120,6 +128,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
 
 
 (2) NSData+Base64.m/NSData+Base64.h
