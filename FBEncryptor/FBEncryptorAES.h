@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2011 Five-technology Co.,Ltd.
+// Copyright (c) 2011 Five-technology Co.,Ltd. and 2016 Bilal ARSLAN
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,37 +21,41 @@
 //
 
 #import <CommonCrypto/CommonCryptor.h>
+#import <CommonCrypto/CommonDigest.h>
 #import <Foundation/Foundation.h>
+
 
 #define FBENCRYPT_ALGORITHM     kCCAlgorithmAES128
 #define FBENCRYPT_BLOCK_SIZE    kCCBlockSizeAES128
 #define FBENCRYPT_KEY_SIZE      kCCKeySizeAES256
 
-@interface FBEncryptorAES : NSObject {
-    
-}
+@interface FBEncryptorAES : NSObject { }
 
-//-----------------
-// API (raw data)
-//-----------------
-+ (NSData*)generateIv;
-+ (NSData*)encryptData:(NSData*)data key:(NSData*)key iv:(NSData*)iv;
-+ (NSData*)decryptData:(NSData*)data key:(NSData*)key iv:(NSData*)iv;
+#pragma mark - API (raw data)
 
++ (NSData *)generateIv;
++ (NSData *)encryptData:(NSData *)data key:(NSData *)key iv:(NSData *)iv;
++ (NSData *)decryptData:(NSData *)data key:(NSData *)key iv:(NSData *)iv;
 
-//-----------------
-// API (base64)
-//-----------------
+#pragma mark - API (base64)
+
 // the return value of encrypteMessage: and 'encryptedMessage' are encoded with base64.
-//
-+ (NSString*)encryptBase64String:(NSString*)string keyString:(NSString*)keyString separateLines:(BOOL)separateLines;
-+ (NSString*)decryptBase64String:(NSString*)encryptedBase64String keyString:(NSString*)keyString;
++ (NSString *)encryptBase64String:(NSString *)string keyString:(NSString *)keyString separateLines:(BOOL)separateLines;
++ (NSString *)decryptBase64String:(NSString *)encryptedBase64String keyString:(NSString *)keyString;
 
-//-----------------
-// API (utilities)
-//-----------------
-+ (NSString*)hexStringForData:(NSData*)data;
-+ (NSData*)dataForHexString:(NSString*)hexString;
+#pragma mark - API (utilities)
 
++ (NSString *)hexStringForData:(NSData *)data;
++ (NSData *)dataForHexString:(NSString *)hexString;
+
+#pragma mark - Bilal ARSLAN 2016
+
+#pragma mark - Key Generator
+
++ (NSString *)generateKey;
+
+#pragma mark - Hash Generator
+
++ (NSString *)generateSHA512:(NSString *)input;
 
 @end

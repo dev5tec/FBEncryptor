@@ -26,6 +26,8 @@
 		4C1000E11393250900C9257E /* FBEncryptorAES.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1000DF1393250900C9257E /* FBEncryptorAES.m */; };
 		4C10010E13932FC400C9257E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10010C13932FC400C9257E /* NSData+Base64.m */; };
 		4C10010F13932FC400C9257E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C10010C13932FC400C9257E /* NSData+Base64.m */; };
+		778F001B1D82351F00B26A05 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 778F001A1D82351F00B26A05 /* Default-568h@2x.png */; };
+		778F001D1D823B5900B26A05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 778F001C1D823B5900B26A05 /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		4C10010C13932FC400C9257E /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		4C10010D13932FC400C9257E /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		4C7E35C313974826000D7909 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		778F001A1D82351F00B26A05 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		778F001C1D823B5900B26A05 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				778F001D1D823B5900B26A05 /* Security.framework in Frameworks */,
 				4C1000A5139324DB00C9257E /* UIKit.framework in Frameworks */,
 				4C1000A7139324DB00C9257E /* Foundation.framework in Frameworks */,
 				4C1000A9139324DB00C9257E /* CoreGraphics.framework in Frameworks */,
@@ -93,12 +98,13 @@
 		4C100095139324DA00C9257E = {
 			isa = PBXGroup;
 			children = (
-				4C7E35C313974826000D7909 /* README.md */,
-				4C1000DD139324F300C9257E /* FBEncryptor */,
-				4C1000AA139324DB00C9257E /* Test Application */,
+				778F001A1D82351F00B26A05 /* Default-568h@2x.png */,
 				4C1000CA139324DB00C9257E /* FBEncryptTests */,
+				4C1000DD139324F300C9257E /* FBEncryptor */,
 				4C1000A3139324DB00C9257E /* Frameworks */,
 				4C1000A1139324DB00C9257E /* Products */,
+				4C1000AA139324DB00C9257E /* Test Application */,
+				4C7E35C313974826000D7909 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,6 +120,7 @@
 		4C1000A3139324DB00C9257E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				778F001C1D823B5900B26A05 /* Security.framework */,
 				4C1000A4139324DB00C9257E /* UIKit.framework */,
 				4C1000A6139324DB00C9257E /* Foundation.framework */,
 				4C1000A8139324DB00C9257E /* CoreGraphics.framework */,
@@ -124,35 +131,34 @@
 		4C1000AA139324DB00C9257E /* Test Application */ = {
 			isa = PBXGroup;
 			children = (
+				4C1000AB139324DB00C9257E /* Supporting Files */,
 				4C1000B3139324DB00C9257E /* FBEncryptAppDelegate.h */,
 				4C1000B4139324DB00C9257E /* FBEncryptAppDelegate.m */,
-				4C1000B6139324DB00C9257E /* MainWindow.xib */,
 				4C1000B9139324DB00C9257E /* FBEncryptViewController.h */,
 				4C1000BA139324DB00C9257E /* FBEncryptViewController.m */,
 				4C1000BC139324DB00C9257E /* FBEncryptViewController.xib */,
-				4C1000AB139324DB00C9257E /* Supporting Files */,
+				4C1000B6139324DB00C9257E /* MainWindow.xib */,
 			);
-			name = "Test Application";
-			path = FBEncrypt;
+			path = "Test Application";
 			sourceTree = "<group>";
 		};
 		4C1000AB139324DB00C9257E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				4C1000AC139324DB00C9257E /* FBEncryptor-Info.plist */,
-				4C1000AD139324DB00C9257E /* InfoPlist.strings */,
 				4C1000B0139324DB00C9257E /* FBEncryptor-Prefix.pch */,
+				4C1000AD139324DB00C9257E /* InfoPlist.strings */,
 				4C1000B1139324DB00C9257E /* main.m */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		4C1000CA139324DB00C9257E /* FBEncryptTests */ = {
 			isa = PBXGroup;
 			children = (
+				4C1000CB139324DB00C9257E /* Supporting Files */,
 				4C1000D1139324DB00C9257E /* FBEncryptTests.h */,
 				4C1000D3139324DB00C9257E /* FBEncryptTests.m */,
-				4C1000CB139324DB00C9257E /* Supporting Files */,
 			);
 			path = FBEncryptTests;
 			sourceTree = "<group>";
@@ -161,10 +167,10 @@
 			isa = PBXGroup;
 			children = (
 				4C1000CC139324DB00C9257E /* FBEncryptorTests-Info.plist */,
-				4C1000CD139324DB00C9257E /* InfoPlist.strings */,
 				4C1000D0139324DB00C9257E /* FBEncryptorTests-Prefix.pch */,
+				4C1000CD139324DB00C9257E /* InfoPlist.strings */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		4C1000DD139324F300C9257E /* FBEncryptor */ = {
@@ -172,10 +178,10 @@
 			children = (
 				4C1000DE1393250900C9257E /* FBEncryptorAES.h */,
 				4C1000DF1393250900C9257E /* FBEncryptorAES.m */,
-				4C10010C13932FC400C9257E /* NSData+Base64.m */,
 				4C10010D13932FC400C9257E /* NSData+Base64.h */,
+				4C10010C13932FC400C9257E /* NSData+Base64.m */,
 			);
-			name = FBEncryptor;
+			path = FBEncryptor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,13 +221,16 @@
 			name = FBEncryptorTests;
 			productName = FBEncryptTests;
 			productReference = 4C1000C4139324DB00C9257E /* FBEncryptorTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		4C100097139324DA00C9257E /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+			};
 			buildConfigurationList = 4C10009A139324DA00C9257E /* Build configuration list for PBXProject "FBEncryptor" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -246,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C1000AF139324DB00C9257E /* InfoPlist.strings in Resources */,
+				778F001B1D82351F00B26A05 /* Default-568h@2x.png in Resources */,
 				4C1000B8139324DB00C9257E /* MainWindow.xib in Resources */,
 				4C1000BE139324DB00C9257E /* FBEncryptViewController.xib in Resources */,
 			);
@@ -318,6 +328,7 @@
 				4C1000AE139324DB00C9257E /* en */,
 			);
 			name = InfoPlist.strings;
+			path = .;
 			sourceTree = "<group>";
 		};
 		4C1000B6139324DB00C9257E /* MainWindow.xib */ = {
@@ -326,6 +337,7 @@
 				4C1000B7139324DB00C9257E /* en */,
 			);
 			name = MainWindow.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 		4C1000BC139324DB00C9257E /* FBEncryptViewController.xib */ = {
@@ -334,6 +346,7 @@
 				4C1000BD139324DB00C9257E /* en */,
 			);
 			name = FBEncryptViewController.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 		4C1000CD139324DB00C9257E /* InfoPlist.strings */ = {
@@ -342,6 +355,7 @@
 				4C1000CE139324DB00C9257E /* en */,
 			);
 			name = InfoPlist.strings;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -350,8 +364,8 @@
 		4C1000D5139324DB00C9257E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -360,6 +374,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -367,7 +382,6 @@
 		4C1000D6139324DB00C9257E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -386,8 +400,10 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FBEncrypt/FBEncryptor-Prefix.pch";
-				INFOPLIST_FILE = "FBEncrypt/FBEncryptor-Info.plist";
+				GCC_PREFIX_HEADER = "Test Application/Supporting Files/FBEncryptor-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "Test Application/Supporting Files/FBEncryptor-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.5tec.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = FBEncryptor;
 				WRAPPER_EXTENSION = app;
 			};
@@ -399,8 +415,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FBEncrypt/FBEncryptor-Prefix.pch";
-				INFOPLIST_FILE = "FBEncrypt/FBEncryptor-Info.plist";
+				GCC_PREFIX_HEADER = "Test Application/Supporting Files/FBEncryptor-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "Test Application/Supporting Files/FBEncryptor-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.5tec.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = FBEncryptor;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -417,12 +435,14 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FBEncryptTests/FBEncryptorTests-Prefix.pch";
-				INFOPLIST_FILE = "FBEncryptTests/FBEncryptorTests-Info.plist";
+				GCC_PREFIX_HEADER = "FBEncryptTests/Supporting Files/FBEncryptorTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "FBEncryptTests/Supporting Files/FBEncryptorTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.5tec.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = FBEncryptorTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -439,12 +459,14 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FBEncryptTests/FBEncryptorTests-Prefix.pch";
-				INFOPLIST_FILE = "FBEncryptTests/FBEncryptorTests-Info.plist";
+				GCC_PREFIX_HEADER = "FBEncryptTests/Supporting Files/FBEncryptorTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "FBEncryptTests/Supporting Files/FBEncryptorTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.5tec.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = FBEncryptorTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;

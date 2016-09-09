@@ -70,15 +70,15 @@
 - (IBAction)encrypt:(id)sender
 {
     self.encrypted.text = [FBEncryptorAES encryptBase64String:self.message.text
-                                                     keyString:self.key.text
-                                                 separateLines:[self.separateline isOn]];
+                                                    keyString:self.key.text
+                                                separateLines:[self.separateline isOn]];
     NSLog(@"encrypted: %@", self.encrypted.text);
 }
 
 - (IBAction)decrypt:(id)sender
 {
     NSString* msg = [FBEncryptorAES decryptBase64String:self.encrypted.text
-                                               keyString:self.key.text];
+                                              keyString:self.key.text];
     
     if (msg) {
         self.decrypted.text = msg;
@@ -91,26 +91,26 @@
 
 
 /*
-- (IBAction)exg:(id)sender
-{
-    if (self.ivString == nil || [self.ivString.text length] == 0) {
-        return;
-    }
-    const char* ivPtr = [self.ivString.text cStringUsingEncoding:NSUTF8StringEncoding];
-    NSMutableString* str = [NSMutableString string];
-    int len = 0;
-    while (*ivPtr) {
-        [str appendFormat:@"%02X", *ivPtr];
-        len++;
-        ivPtr++;
-    }
-    while (len < 16) {
-        [str appendString:@"00"]; 
-        len++;
-    }
-    self.iv.text = str;
-    NSLog(@"iv: %@", str);
-}
-*/
+ - (IBAction)exg:(id)sender
+ {
+ if (self.ivString == nil || [self.ivString.text length] == 0) {
+ return;
+ }
+ const char* ivPtr = [self.ivString.text cStringUsingEncoding:NSUTF8StringEncoding];
+ NSMutableString* str = [NSMutableString string];
+ int len = 0;
+ while (*ivPtr) {
+ [str appendFormat:@"%02X", *ivPtr];
+ len++;
+ ivPtr++;
+ }
+ while (len < 16) {
+ [str appendString:@"00"]; 
+ len++;
+ }
+ self.iv.text = str;
+ NSLog(@"iv: %@", str);
+ }
+ */
 
 @end

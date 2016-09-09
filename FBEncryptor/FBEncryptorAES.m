@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2011 Five-technology Co.,Ltd.
+// Copyright (c) 2011 Five-technology Co.,Ltd. and 2016 Bilal ARSLAN
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,7 @@
 #import "FBEncryptorAES.h"
 #import "NSData+Base64.h"
 
+
 @implementation FBEncryptorAES
 
 #pragma mark -
@@ -36,29 +37,29 @@
 #pragma mark -
 #pragma mark API
 
-+ (NSData*)encryptData:(NSData*)data key:(NSData*)key iv:(NSData*)iv;
-{
-    NSData* result = nil;
-
++ (NSData *)encryptData:(NSData *)data key:(NSData *)key iv:(NSData *)iv {
+    NSData *result = nil;
+    
     // setup key
     unsigned char cKey[FBENCRYPT_KEY_SIZE];
-	bzero(cKey, sizeof(cKey));
+    bzero(cKey, sizeof(cKey));
     [key getBytes:cKey length:FBENCRYPT_KEY_SIZE];
-	
+    
     // setup iv
     char cIv[FBENCRYPT_BLOCK_SIZE];
     bzero(cIv, FBENCRYPT_BLOCK_SIZE);
+    
     if (iv) {
         [iv getBytes:cIv length:FBENCRYPT_BLOCK_SIZE];
     }
     
     // setup output buffer
-	size_t bufferSize = [data length] + FBENCRYPT_BLOCK_SIZE;
-	void *buffer = malloc(bufferSize);
-
+    size_t bufferSize = [data length] + FBENCRYPT_BLOCK_SIZE;
+    void *buffer = malloc(bufferSize);
+    
     // do encrypt
-	size_t encryptedSize = 0;
-	CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,
+    size_t encryptedSize = 0;
+    CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,
                                           FBENCRYPT_ALGORITHM,
                                           kCCOptionPKCS7Padding,
                                           cKey,
@@ -68,26 +69,25 @@
                                           [data length],
                                           buffer,
                                           bufferSize,
-										  &encryptedSize);
-	if (cryptStatus == kCCSuccess) {
-		result = [NSData dataWithBytesNoCopy:buffer length:encryptedSize];
-	} else {
+                                          &encryptedSize);
+    if (cryptStatus == kCCSuccess) {
+        result = [NSData dataWithBytesNoCopy:buffer length:encryptedSize];
+    } else {
         free(buffer);
         NSLog(@"[ERROR] failed to encrypt|CCCryptoStatus: %d", cryptStatus);
     }
-	
-	return result;
+    
+    return result;
 }
 
-+ (NSData*)decryptData:(NSData*)data key:(NSData*)key iv:(NSData*)iv;
-{
-    NSData* result = nil;
-
++ (NSData *)decryptData:(NSData *)data key:(NSData *)key iv:(NSData *)iv {
+    NSData *result = nil;
+    
     // setup key
     unsigned char cKey[FBENCRYPT_KEY_SIZE];
-	bzero(cKey, sizeof(cKey));
+    bzero(cKey, sizeof(cKey));
     [key getBytes:cKey length:FBENCRYPT_KEY_SIZE];
-
+    
     // setup iv
     char cIv[FBENCRYPT_BLOCK_SIZE];
     bzero(cIv, FBENCRYPT_BLOCK_SIZE);
@@ -96,15 +96,15 @@
     }
     
     // setup output buffer
-	size_t bufferSize = [data length] + FBENCRYPT_BLOCK_SIZE;
-	void *buffer = malloc(bufferSize);
-	
+    size_t bufferSize = [data length] + FBENCRYPT_BLOCK_SIZE;
+    void *buffer = malloc(bufferSize);
+    
     // do decrypt
-	size_t decryptedSize = 0;
-	CCCryptorStatus cryptStatus = CCCrypt(kCCDecrypt,
+    size_t decryptedSize = 0;
+    CCCryptorStatus cryptStatus = CCCrypt(kCCDecrypt,
                                           FBENCRYPT_ALGORITHM,
                                           kCCOptionPKCS7Padding,
-										  cKey,
+                                          cKey,
                                           FBENCRYPT_KEY_SIZE,
                                           cIv,
                                           [data bytes],
@@ -112,50 +112,44 @@
                                           buffer,
                                           bufferSize,
                                           &decryptedSize);
-	
-	if (cryptStatus == kCCSuccess) {
-		result = [NSData dataWithBytesNoCopy:buffer length:decryptedSize];
-	} else {
+    
+    if (cryptStatus == kCCSuccess) {
+        result = [NSData dataWithBytesNoCopy:buffer length:decryptedSize];
+    } else {
         free(buffer);
         NSLog(@"[ERROR] failed to decrypt| CCCryptoStatus: %d", cryptStatus);
     }
-
-	return result;
+    
+    return result;
 }
 
 
-+ (NSString*)encryptBase64String:(NSString*)string keyString:(NSString*)keyString separateLines:(BOOL)separateLines
-{
-    NSData* data = [self encryptData:[string dataUsingEncoding:NSUTF8StringEncoding]
++ (NSString *)encryptBase64String:(NSString *)string keyString:(NSString *)keyString separateLines:(BOOL)separateLines {
+    NSData *data = [self encryptData:[string dataUsingEncoding:NSUTF8StringEncoding]
                                  key:[keyString dataUsingEncoding:NSUTF8StringEncoding]
                                   iv:nil];
     return [data base64EncodedStringWithSeparateLines:separateLines];
 }
 
-+ (NSString*)decryptBase64String:(NSString*)encryptedBase64String keyString:(NSString*)keyString
-{
-    NSData* encryptedData = [NSData dataFromBase64String:encryptedBase64String];
-    NSData* data = [self decryptData:encryptedData
-                                 key:[keyString dataUsingEncoding:NSUTF8StringEncoding]
-                                  iv:nil];
++ (NSString *)decryptBase64String:(NSString *)encryptedBase64String keyString:(NSString *)keyString {
+    NSData *encryptedData = [NSData dataFromBase64String:encryptedBase64String];
+    NSData *data = [self decryptData:encryptedData key:[keyString dataUsingEncoding:NSUTF8StringEncoding] iv:nil];
     if (data) {
-        return [[[NSString alloc] initWithData:data
-                                      encoding:NSUTF8StringEncoding] autorelease];
+        return [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     } else {
         return nil;
     }
 }
 
 
-#define FBENCRYPT_IV_HEX_LEGNTH (FBENCRYPT_BLOCK_SIZE*2)
+#define FBENCRYPT_IV_HEX_LEGNTH (FBENCRYPT_BLOCK_SIZE * 2)
 
-+ (NSData*)generateIv
-{
++ (NSData *)generateIv {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        srand(time(NULL));
+        srandom(arc4random());
     });
-
+    
     char cIv[FBENCRYPT_BLOCK_SIZE];
     for (int i=0; i < FBENCRYPT_BLOCK_SIZE; i++) {
         cIv[i] = rand() % 256;
@@ -163,15 +157,13 @@
     return [NSData dataWithBytes:cIv length:FBENCRYPT_BLOCK_SIZE];
 }
 
-
-+ (NSString*)hexStringForData:(NSData*)data
-{
++ (NSString *)hexStringForData:(NSData *)data {
     if (data == nil) {
         return nil;
     }
-
-    NSMutableString* hexString = [NSMutableString string];
-
+    
+    NSMutableString *hexString = [NSMutableString string];
+    
     const unsigned char *p = [data bytes];
     
     for (int i=0; i < [data length]; i++) {
@@ -180,14 +172,13 @@
     return hexString;
 }
 
-+ (NSData*)dataForHexString:(NSString*)hexString
-{
++ (NSData *)dataForHexString:(NSString *)hexString {
     if (hexString == nil) {
         return nil;
     }
     
-    const char* ch = [[hexString lowercaseString] cStringUsingEncoding:NSUTF8StringEncoding];
-    NSMutableData* data = [NSMutableData data];
+    const char *ch = [[hexString lowercaseString] cStringUsingEncoding:NSUTF8StringEncoding];
+    NSMutableData *data = [NSMutableData data];
     while (*ch) {
         char byte = 0;
         if ('0' <= *ch && *ch <= '9') {
@@ -195,8 +186,10 @@
         } else if ('a' <= *ch && *ch <= 'f') {
             byte = *ch - 'a' + 10;
         }
+        
         ch++;
         byte = byte << 4;
+        
         if (*ch) {
             if ('0' <= *ch && *ch <= '9') {
                 byte += *ch - '0';
@@ -210,4 +203,30 @@
     return data;
 }
 
+#pragma mark - Bilal ARSLAN 2016
+
+#pragma mark - Key Generator
+
++ (NSString *)generateKey {
+    NSMutableData *data = [NSMutableData dataWithLength:kCCKeySizeAES256];
+    int result = SecRandomCopyBytes(kSecRandomDefault, kCCKeySizeAES256, [data mutableBytes]);
+    
+    if (result != errSecSuccess) {
+        return @"";
+    }
+    
+    return [self hexStringForData:data];
+}
+
+#pragma mark - Hash Generator
+
++ (NSString *)generateSHA512:(NSString *)input {
+    const char *inputChar = [input cStringUsingEncoding:NSASCIIStringEncoding];
+    NSData *keyData = [NSData dataWithBytes:inputChar length:strlen(inputChar)];
+    uint8_t digest[CC_SHA512_DIGEST_LENGTH] = {0};
+    CC_SHA512(keyData.bytes, (int)keyData.length, digest);
+    
+    NSData *hash = [NSData dataWithBytes:digest length:CC_SHA512_DIGEST_LENGTH];
+    return [hash description];
+}
 @end
